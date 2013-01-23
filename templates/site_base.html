@@ -1,0 +1,49 @@
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sampleapp</title>
+    {% compress css %}
+      <link rel="stylesheet" href="/media/css/screen.css" type="text/css" charset="utf-8">
+      <link rel="stylesheet" href="/media/css/bootstrap.min.css" type="text/css" charset="utf-8">
+    {% endcompress %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    {% block extra_head %} {% endblock %}
+  </head>
+
+  <body style="{% block body_classes %}{% endblock %}">
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">YourApp</a>
+          {% block nav_bar_content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      {% block content %}{% endblock %}
+
+      <hr>
+
+      <footer>
+        <p>&copy; YourApp 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    {% compress js %}
+      <script src="/media/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    {% endcompress %}
+    {% block extra_js %}
+    {% endblock %}
+  </body>
+</html>
