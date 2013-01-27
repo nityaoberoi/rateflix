@@ -6,9 +6,9 @@ PRODUCTION = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'heroku_3000ec83c1561da',
-        'USER': 'b3fc7ab06a9e40',
-        'PASSWORD': '5f5ced39',
+        'NAME': 'heroku_99428f7c54091d9',
+        'USER': 'b9808af61a74e3',
+        'PASSWORD': 'f25efa6c',
         'HOST': 'us-cdbr-east-03.cleardb.com',
         'PORT': '3306',
     }
