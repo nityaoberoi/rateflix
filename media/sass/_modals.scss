@@ -1,0 +1,57 @@
+#recommendation-container {
+    font-size: 36px;
+    line-height: 1.9em;
+    padding: 30px;
+}
+
+ul.choice, input[type='text'] {
+    height: 1.36em;
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px dotted #999;
+    color: #999;
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: 300;
+    margin: 0 0.163em 0 0;
+    outline: none;
+    padding: 0px;
+    -webkit-appearance: none;
+}
+
+ul.choice {
+
+    &.type {
+        width: 145px;
+    }
+
+    li {
+        font-size: 34px;
+        padding: 0 10px;
+        z-index: 2;
+        width: 145px;
+        line-height: 1.2em;
+
+        &:not(.init) {
+            float: left;
+            display: none;
+            background: #ddd;
+        }
+
+        &:not(.init):hover, &.selected:not(.init) {
+            background: #ccc;
+        }
+
+        &.init {
+            cursor: pointer;
+        }
+    }
+}
+
+input {
+
+    &.genre {
+        width: 6em;
+    }
+}
