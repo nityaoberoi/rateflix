@@ -7,6 +7,9 @@ class MovieQuerySet(QuerySet):
     def unrated(self):
         return self.filter(rating=0)
 
+    def rated(self):
+        return self.exclude(rating=0)
+
 
 class MovieManager(Manager):
 
