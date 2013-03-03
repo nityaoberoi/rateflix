@@ -3,6 +3,7 @@ from pyquery import PyQuery as pq
 import requests
 import urllib
 
+from rateflix.forms import MovieForm
 from rateflix.models import Movie
 
 
@@ -31,8 +32,16 @@ class Scraper(object):
             request_url,
             data=self.auth_data)
 
-    def get_item(self, doc, path):
-        return doc(path)[0]
+    def get_item(self, doc, path, key=None):
+        paths = path.split('||')
+        for path in paths:
+            value = doc(path)
+            if value:
+                break
+        ret_values = map(lambda item: item.text.strip(), value)
+        if ret_values and len(ret_values) == 1:
+            return ret_values[0]
+        return ret_values or None
 
 
 class NetflixScraper(Scraper):
@@ -59,6 +68,18 @@ class NetflixScraper(Scraper):
         Movie.objects.get_or_create(name=name)
 
 
+IMDB_DICT = {
+    "rating": ".titlePageSprite.star-box-giga-star",
+    "release_year": ".header span a || .header span.nobr",
+    "image": "td#img_primary div.image img",
+    "genre": ".infobar a[href*=genre]",
+    "tv_show": ".infobar",
+    "country": ".infobar .nobr a",
+}
+
+IMAGE_FIELDS = ['image']
+
+
 class IMDBScraper(Scraper):
 
     BASE_URL = "http://www.imdb.com"
@@ -75,11 +96,23 @@ class IMDBScraper(Scraper):
         search_url = self.SEARCH_URL.format(urllib.quote_plus(movie_name))
         doc = self.get_document(search_url)
         # route the url to the first search result
-        return doc(result_xpath).eq(0)[0].get('href')
+        value = None
+        try:
+            value = doc(result_xpath).eq(0)[0].get('href')
+        except IndexError:
+            pass
+        return value
+
+    def get_item(self, doc, path, key):
+        if key in IMAGE_FIELDS:
+            return doc(path).attr('src')
+        return super(IMDBScraper, self).get_item(doc, path)
 
     def add_rating(self, doc, movie):
-        rating_sel = ".titlePageSprite.star-box-giga-star"
-        movie.rating = self.get_item(doc, rating_sel).text.strip()
-        year_sel = ".header span a"
-        movie.release_year = self.get_item(doc, year_sel).text.strip()
-        movie.save()
+        data = {}
+        for key in IMDB_DICT.keys():
+            value = self.get_item(doc, IMDB_DICT.get(key), key)
+            data[key] = value
+        form = MovieForm(data=data, instance=movie)
+        if form.is_valid():
+            form.save()
