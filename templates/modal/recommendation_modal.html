@@ -1,0 +1,13 @@
+<form id="show-me">
+    I want to watch <span class="article">a</span>
+    <ul class="choice type">
+        <li class="init">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        {% for type in types %}
+            <li class="data-index={{ forloop.counter0 }}">{{ type }}</li>
+        {% endfor %}
+    </ul>.
+    I'm interested in <input type="text" class="genre">
+    <div class="span3 offet9">
+        <input type="submit" class="btn" value="show me" />
+    </div>
+</form>

@@ -1,0 +1,120 @@
+{% extends 'site_base.html' %}
+{% load thumbor_url %}
+
+{% block top_container %}
+<div class="container">
+    <div class="row watch-row">
+        <div class="span9 text">
+            Let's watch something.
+        </div>
+        <div class="span3">
+            <a class="btn" id="recommendation-btn" href="#">get a recommendation</a>
+        </div>
+    </div>
+    <div class="row recommendation-row">
+        <hr>
+        <div id="recommendation-container" class="hide">
+            {% include 'modal/recommendation_modal.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <hr>
+    <div class="movie-shelf">
+        {% for movie in movies %}
+            <div class="movie-block" title="{{ movie.name }}" data-content="{{ movie.description }}">
+                <img src="{% thumbor_url movie.image width=168 height=249 %}" width="168px" height="249px" alt="{{ movie.name }}">
+            </div>
+        {% endfor %}
+    </div>
+    {% comment %}
+    <div class="span2">
+        <ul class="nav nav-list nav-inverse">
+            <li class="nav-header">Filter by:</li>
+            {% for genre in genres %}
+            <li><a href="/?genre={{genre.slug}}" class="filter-by filter-genre">{{ genre.name }}</a></li>
+            {% endfor %}
+            <li class="divider"></li>
+        </ul>
+    </div>
+    <div class="span10">
+
+        {% for movie in movies %}
+        {% if forloop.first %}
+            <div class="row-fluid header-row">
+                <div class="span2">Image</div>
+                <div class="span2">Title</div>
+                <div class="span2">Rating</div>
+                <div class="span2">Year</div>
+                <div class="span2">Genre</div>
+            </div>
+        {% endif %}
+        <div class="row-fluid movie-row">
+            <div class="span2">
+                <img src="{% thumbor_url movie.image width=65 height=97 %}" width="65px" height="97px">
+            </div>
+            <div class="span2">{{ movie.name }}</div>
+            <div class="span2">{{ movie.rating }}</div>
+            <div class="span2">{{ movie.release_year }}</div>
+            <div class="span2">{{ movie.genres }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endcomment %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+jQuery(function($){
+
+    var doc = $(document);
+
+    $('.movie-block').popover({
+        'trigger': 'hover',
+    });
+
+    doc.on('click', '#recommendation-btn', function(){
+        $('#recommendation-container').show('slow');
+    });
+
+    doc.on('click', 'ul.choice .init', function(){
+        $(this).closest("ul").children('li').toggle();
+    })
+
+    var allOptions = $('ul.choice').children('li');
+    doc.on("click", "ul.choice li:not(.init)", function() {
+        allOptions.removeClass('selected');
+        $(this).addClass('selected');
+        $("ul").children('.init').html($(this).html());
+        allOptions.toggle();
+    });
+
+    var t = new $.TextboxList('input.genre', {
+        bitsOptions: {
+            editable: {
+                addKeys: [188]
+            }
+        },
+        unique: true,
+        plugins: {
+            autocomplete: {
+                minLength: 2,
+                queryRemote: true,
+                remote: {url: '/ajax/autocomplete'}
+            }
+        }
+    });
+
+    var t5 = new $.TextboxList('#form_tags_input_4', { plugins: {autocomplete: {
+                    minLength: 2,
+                    queryRemote: true,
+                    remote: {url: 'autocomplete2.php'}
+                }}})
+
+});
+</script>
+{% endblock %}
