@@ -16,7 +16,7 @@ MANAGERS = ADMINS
 
 DATABASES = {}
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] = dj_database_url.config()
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'south',
 
     'rateflix',
+    'util'
 )
 
 STATICFILES_FINDERS = (
