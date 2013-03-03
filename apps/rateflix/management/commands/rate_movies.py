@@ -12,5 +12,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         imdb_scraper = IMDBScraper()
         for movie in Movie.objects.all().unrated():
-            movie_url = imdb_scraper.get_movie_url(movie.name)
-            imdb_scraper.process(movie_url, movie)
+            movie_url = imdb_scraper.get_movie_url(movie.name.rsplit('(')[0])
+            if movie_url:
+                try:
+                    imdb_scraper.process(movie_url, movie)
+                except Exception as e:
+                    pass
