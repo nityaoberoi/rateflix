@@ -1,5 +1,8 @@
+.gitignore
 venv
 *.pyc
 *.DS_Store
 media/*.sass-cache/
-
+media/css/screen.css
+media/CACHE/manifest.json
+/CACHE/
