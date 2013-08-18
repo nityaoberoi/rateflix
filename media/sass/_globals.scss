@@ -26,11 +26,12 @@ h1, h2, h3 {
 
 .movie-block {
     float: left;
-    margin: 0 20px 70px 0;
-    width: 168px;
-    height: 249px;
+    margin: 0 20px 100px 0;
 
     img {
-        -webkit-box-reflect: below 10px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent), to(rgba(250, 250, 250, 0.1)));;
+        -webkit-box-reflect: below 10px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent), to(rgba(250, 250, 250, 0.1)));
+        width: 168px;
+    height: 249px;
+
     }
 }

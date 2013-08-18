@@ -11,9 +11,10 @@
             <a class="btn" id="recommendation-btn" href="#">get a recommendation</a>
         </div>
     </div>
-    <div class="row recommendation-row">
+    <div class="row hide" id="recommendation-row">
         <hr>
-        <div id="recommendation-container" class="hide">
+        <div id="recommendation-container">
+
             {% include 'modal/recommendation_modal.html' %}
         </div>
     </div>
@@ -26,7 +27,7 @@
     <div class="movie-shelf">
         {% for movie in movies %}
             <div class="movie-block" title="{{ movie.name }}" data-content="{{ movie.description }}">
-                <img src="{% thumbor_url movie.image width=168 height=249 %}" width="168px" height="249px" alt="{{ movie.name }}">
+                <img src="{{ movie.image }}" width="168px" height="249px" alt="{{ movie.name }}">
             </div>
         {% endfor %}
     </div>
@@ -39,29 +40,6 @@
             {% endfor %}
             <li class="divider"></li>
         </ul>
-    </div>
-    <div class="span10">
-
-        {% for movie in movies %}
-        {% if forloop.first %}
-            <div class="row-fluid header-row">
-                <div class="span2">Image</div>
-                <div class="span2">Title</div>
-                <div class="span2">Rating</div>
-                <div class="span2">Year</div>
-                <div class="span2">Genre</div>
-            </div>
-        {% endif %}
-        <div class="row-fluid movie-row">
-            <div class="span2">
-                <img src="{% thumbor_url movie.image width=65 height=97 %}" width="65px" height="97px">
-            </div>
-            <div class="span2">{{ movie.name }}</div>
-            <div class="span2">{{ movie.rating }}</div>
-            <div class="span2">{{ movie.release_year }}</div>
-            <div class="span2">{{ movie.genres }}</div>
-        </div>
-        {% endfor %}
     </div>
     {% endcomment %}
 </div>
@@ -78,7 +56,7 @@ jQuery(function($){
     });
 
     doc.on('click', '#recommendation-btn', function(){
-        $('#recommendation-container').show('slow');
+        $('#recommendation-row').show('slow');
     });
 
     doc.on('click', 'ul.choice .init', function(){
@@ -89,8 +67,15 @@ jQuery(function($){
     doc.on("click", "ul.choice li:not(.init)", function() {
         allOptions.removeClass('selected');
         $(this).addClass('selected');
-        $("ul").children('.init').html($(this).html());
+        var text = $(this).html();
+        $("ul").children('.init').html(text);
         allOptions.toggle();
+        var vowel = new RegExp('^[aeiou].*$')
+        if (vowel.test(text) === true) {
+            $('.article').html('');
+        } else {
+            $('.article').html('a');
+        }
     });
 
     var t = new $.TextboxList('input.genre', {
@@ -104,17 +89,27 @@ jQuery(function($){
             autocomplete: {
                 minLength: 2,
                 queryRemote: true,
-                remote: {url: '/ajax/autocomplete'}
+                remote: {url: '/ajax/autocomplete/'}
             }
         }
     });
 
-    var t5 = new $.TextboxList('#form_tags_input_4', { plugins: {autocomplete: {
-                    minLength: 2,
-                    queryRemote: true,
-                    remote: {url: 'autocomplete2.php'}
-                }}})
-
+    doc.on('submit', '#show-me', function(e) {
+        var genres = $('.choose-genre', this)
+                        .find('.textboxlist-bit-box')
+                        .text();
+        $.ajax({
+            type: 'GET',
+            url: '/',
+            data: {'genre': genres},
+            success: function (data) {
+                debugger;
+            },
+            error: function(data) {
+                debugger;
+            }
+        });
+    });
 });
 </script>
 {% endblock %}

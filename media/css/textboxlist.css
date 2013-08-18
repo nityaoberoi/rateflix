@@ -4,12 +4,17 @@
     Purchase to remove copyright
 */
 
-.textboxlist { cursor: text; }
+.textboxlist {
+    cursor: text;
+    display: inline-block;
+    min-width: 100px;
+}
 .textboxlist-bits {
-    zoom: 1; overflow:
-    hidden; margin: 0;
+    zoom: 1;
+    overflow: hidden;
+    margin: 0;
     padding: 3px 4px 0;
-    border: 1px solid #999;
+    border-bottom: 1px dotted #999;
     *padding-bottom: 3px;
 }
 .textboxlist-bit {
@@ -22,25 +27,29 @@
   }
 .textboxlist-bit-editable-input {
     border: 0 !important;
-    border-color: none;
+    border: none;
     padding-top: 2px;
     font-size: 0.9em;
 }
-.textboxlist-bit-editable-input:focus { outline: 0; }
+.textboxlist-bit-editable-input:focus {
+    outline: 0;
+}
 .textboxlist-bit-box {
     position: relative;
     line-height: 1em;
-    padding: 0 5px;
+    padding: 0 10px;
     -moz-border-radius: 9px;
     -webkit-border-radius: 9px;
     border-radius: 9px;
-    border: 1px solid #CAD8F3;
-    background: #DEE7F8;
+    border: 1px solid #444444;
     cursor: default; }
-.textboxlist-bit-box-deletable { padding-right: 15px; }
+.textboxlist-bit-box-deletable {
+    padding-right: 20px;
+}
 .textboxlist-bit-box-deletebutton {
-    position: absolute; right: 4px;
-    top: 6px;
+    position: absolute;
+    right: 2px;
+    top: 1px;
     display: block;
     width: 19px;
     height: 18px;
@@ -48,9 +57,19 @@
     background: url('../img/close.gif');
     background-repeat: no-repeat
 }
-.textboxlist-bit-box-deletebutton:hover { border: none; background-position: 7px; text-decoration: none; }
-.textboxlist-bit-box-hover { background: #BBCEF1; border: 1px solid #6D95E0; }
-.textboxlist-bit-box-focus { border-color: #598BEC; background: #598BEC; color: #fff; }
+.textboxlist-bit-box-deletebutton:hover {
+    border: none;
+
+    text-decoration: none;
+}
+.textboxlist-bit-box-hover {
+    border: 1px solid #BBBBBB;
+}
+.textboxlist-bit-box-focus {
+    border-color: #444444;
+    background: #888888;
+    color: #000000;
+}
 .textboxlist-bit-box-focus .textboxlist-bit-box-deletebutton { background-position: bottom; }
 
 /*  TextboxList Style guidelines

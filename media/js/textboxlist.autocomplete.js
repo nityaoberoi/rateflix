@@ -39,7 +39,6 @@ $.TextboxList.Autocomplete = function(textboxlist, _options){
             .addEvent('bitEditableFocus', search)
             .addEvent('bitEditableBlur', hide)
             .setOptions({bitsOptions: {editable: {addKeys: false, stopEnter: false}}});
-        if ($.browser.msie) textboxlist.setOptions({bitsOptions: {editable: {addOnBlur: false}}});
         prefix = textboxlist.getOptions().prefix + '-autocomplete';
         method = $.TextboxList.Autocomplete.Methods[options.method];
         container = $('<div class="'+ prefix +'" />').width(textboxlist.getContainer().width()).appendTo(textboxlist.getContainer());
@@ -127,7 +126,7 @@ $.TextboxList.Autocomplete = function(textboxlist, _options){
             hidePlaceholder();
             list.css('display', 'none');
             currentSearch = null;
-        }, $.browser.msie ? 150 : 0);
+        }, 0);
     };
 
     var showPlaceholder = function(){

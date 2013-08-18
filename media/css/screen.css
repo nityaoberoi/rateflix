@@ -1,0 +1,257 @@
+/* line 17, ../sass/_reset.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, button {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 21, ../sass/_reset.scss */
+fieldset, table {
+  border: 0;
+}
+
+/* line 26, ../sass/_reset.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 29, ../sass/_reset.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 32, ../sass/_reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 36, ../sass/_reset.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 40, ../sass/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: transparent;
+}
+
+/* line 45, ../sass/_reset.scss */
+:focus {
+  outline: 0;
+}
+
+/* line 58, ../sass/_reset.scss */
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+/* line 67, ../sass/_reset.scss */
+audio:not([controls]) {
+  display: none;
+}
+
+/* line 74, ../sass/_reset.scss */
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* line 81, ../sass/_reset.scss */
+a:hover,
+a:active {
+  outline: 0;
+}
+
+/* line 89, ../sass/_reset.scss */
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+/* line 95, ../sass/_reset.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 98, ../sass/_reset.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* line 105, ../sass/_reset.scss */
+img {
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+/* line 120, ../sass/_reset.scss */
+button,
+input,
+select,
+textarea,
+label {
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+}
+
+/* line 126, ../sass/_reset.scss */
+button,
+input {
+  *overflow: visible;
+  line-height: normal;
+}
+
+/* line 131, ../sass/_reset.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* line 138, ../sass/_reset.scss */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+/* line 142, ../sass/_reset.scss */
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield;
+}
+
+/* line 149, ../sass/_reset.scss */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* line 152, ../sass/_reset.scss */
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+
+/* line 1, ../sass/_globals.scss */
+body {
+  background: url("../img/background.jpg");
+  color: #999999;
+  font-family: 'Raleway', sans-serif;
+  padding-top: 60px;
+}
+
+/* line 8, ../sass/_globals.scss */
+h1, h2, h3 {
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+/* line 12, ../sass/_globals.scss */
+.watch-row {
+  padding: 10px 0;
+}
+/* line 15, ../sass/_globals.scss */
+.watch-row .text {
+  font-size: 36px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.1);
+}
+
+/* line 23, ../sass/_globals.scss */
+.btn {
+  text-transform: uppercase;
+}
+
+/* line 27, ../sass/_globals.scss */
+.movie-block {
+  float: left;
+  margin: 0 20px 100px 0;
+}
+/* line 31, ../sass/_globals.scss */
+.movie-block img {
+  -webkit-box-reflect: below 10px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent), to(rgba(250, 250, 250, 0.1)));
+  width: 168px;
+  height: 249px;
+}
+
+/* line 1, ../sass/_modals.scss */
+#recommendation-container {
+  font-size: 36px;
+  line-height: 1.9em;
+  padding: 30px;
+}
+
+/* line 7, ../sass/_modals.scss */
+ul.choice, input[type='text'] {
+  height: 1.36em;
+  background-color: transparent;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px dotted #999;
+  color: #999;
+  display: inline-block;
+  font-size: 0.9em;
+  font-weight: 300;
+  margin: 0 0.163em 0 0;
+  outline: none;
+  padding: 0px;
+  -webkit-appearance: none;
+}
+
+/* line 25, ../sass/_modals.scss */
+ul.choice.type {
+  width: 145px;
+}
+/* line 29, ../sass/_modals.scss */
+ul.choice li {
+  font-size: 34px;
+  padding: 0 10px;
+  z-index: 2;
+  width: 145px;
+  line-height: 1.2em;
+}
+/* line 36, ../sass/_modals.scss */
+ul.choice li:not(.init) {
+  float: left;
+  display: none;
+  background: #ddd;
+}
+/* line 42, ../sass/_modals.scss */
+ul.choice li:not(.init):hover, ul.choice li.selected:not(.init) {
+  background: #ccc;
+}
+/* line 46, ../sass/_modals.scss */
+ul.choice li.init {
+  cursor: pointer;
+}

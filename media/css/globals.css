@@ -1,0 +1,10 @@
+/* line 1, ../scss/globals.scss */
+body {
+  font-family: 'Raleway', sans-serif;
+  padding-top: 60px;
+}
+
+/* line 6, ../scss/globals.scss */
+.movie-row {
+  height: 200px;
+}
